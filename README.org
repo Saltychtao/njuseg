@@ -1,4 +1,7 @@
 * Installation and Usage
+** Requirements
+- pytorch >= 0.4.1
+- torchtext >= 0.3.0
 ** Installation
 Installation through pip:
 
@@ -16,7 +19,7 @@ segmented_sentences = segmenter.seg(sentences)
 
 * Performance
 ** In domain:
-
+All the models are trained on the same corpus, and tested on the same test dataset. The performance of jieba, THULAC and pkuseg is retrieved from [[https://github.com/lancopku/pkuseg-python]]. 
 |--------+-------+-------------+-------|
 | Model  |   MSR | NLPCC WEIBO |  CTB8 |
 |--------+-------+-------------+-------|
@@ -36,7 +39,6 @@ segmented_sentences = segmenter.seg(sentences)
 | njuseg                | 86.31 | 96.11 | 89.01 |       94.37 |       91.45 |       89.90 |
 | njuseg(with pretrain) | 86.14 | 96.29 | 89.25 |       94.63 |       91.57 |       90.07 |
 |-----------------------+-------+-------+-------+-------------+-------------+-------------|
-
 
 * Speed
 - On CPU: 20 k characters per second
