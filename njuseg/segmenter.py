@@ -48,8 +48,8 @@ class Segmenter(object):
         return train_iter,dev_iter
 
     @staticmethod
-    def load_testset(unigram_field,bigram_field,label_field,data_dir):
-        test = datasets.SequenceTaggingDataset(path=os.path.join(data_dir,'test.tsv'),
+    def load_testset(unigram_field,bigram_field,label_field,test_path):
+        test = datasets.SequenceTaggingDataset(path=test_path,
                                                fields=[('unigram',unigram_field),('label',label_field),('fwd_bigram',bigram_field),('back_bigram',bigram_field)])
 
         test_iter = data.BucketIterator(test,batch_size=32,train=False,shuffle=False,sort=False,device=device)
@@ -176,10 +176,12 @@ class Segmenter(object):
         return segmenter
 
     @staticmethod
-    def test(model_pth):
+    def test(model_pth,test_path=None):
 
         segmenter = Segmenter.load_model(model_pth,device)
-        test_iter = Segmenter.load_testset(segmenter.unigram_field,segmenter.bigram_field,segmenter.label_field,segmenter.options.data_dir)
+        if test_path is None:
+            test_path = os.path.join(segmenter.options.data_dir,'test.tsv')
+        test_iter = Segmenter.load_testset(segmenter.unigram_field,segmenter.bigram_field,segmenter.label_field,test_path)
         fscore = segmenter.model.evaluate(test_iter)
         return fscore
 
