@@ -1,45 +1,46 @@
-* Installation and Usage
-** Requirements
-- pytorch >= 0.4.1
-- torchtext >= 0.3.0
-** Installation
-Installation through pip:
+* NJUSEG -- Chinese Word Segmenter developed by Nanjing University NLP Group
+** Installation and Usage
+*** Requirements
+ - pytorch >= 0.4.1
+ - torchtext >= 0.3.0
+*** Installation
+ Installation through pip:
 
-#+BEGIN_SRC shell
-pip install njuseg
-#+END_SRC
+ #+BEGIN_SRC shell
+ pip install njuseg
+ #+END_SRC
 
-** Usage
-#+BEGIN_SRC python
-from njuseg import Segmenter
-segmenter = Segmenter.load_model(model_pth,use_gpu=True)
-sentences = ['美国联邦储备委员会 16 日发布的全国经济形势调查报告显示，去年 12 月初至今年 1 月上旬，美国经济继续温和扩张，但美国企业对经济前景的乐观程度有所下降。','美联储注意到了市场对全球经济放缓等风险因素的担心，但当前美国经济发生衰退的风险并未上升。']
-segmented_sentences = segmenter.seg(sentences)
-#+END_SRC
+*** Usage
+ #+BEGIN_SRC python
+ from njuseg import Segmenter
+ segmenter = Segmenter.load_model(model_pth,use_gpu=True)
+ sentences = ['美国联邦储备委员会 16 日发布的全国经济形势调查报告显示，去年 12 月初至今年 1 月上旬，美国经济继续温和扩张，但美国企业对经济前景的乐观程度有所下降。','美联储注意到了市场对全球经济放缓等风险因素的担心，但当前美国经济发生衰退的风险并未上升。']
+ segmented_sentences = segmenter.seg(sentences)
+ #+END_SRC
 
-* Performance
-** In domain:
-All the models are trained on the same corpus, and tested on the same test dataset. The performance of jieba, THULAC and pkuseg is retrieved from [[https://github.com/lancopku/pkuseg-python]]. 
-|--------+-------+-------------+-------|
-| Model  |   MSR | NLPCC WEIBO |  CTB8 |
-|--------+-------+-------------+-------|
-| jieba  | 88.42 |       96.52 | 98.14 |
-| THULAC | 95.71 |       92.87 | 94.56 |
-| pkuseg | 96.88 |       94.21 | 95.69 |
-| njuseg | 96.52 |       95.82 | 96.29 |
-|--------+-------+-------------+-------|
+** Performance
+*** In domain:
+ All the models are trained on the same corpus, and tested on the same test dataset. The performance of jieba, THULAC and pkuseg is retrieved from [[https://github.com/lancopku/pkuseg-python]]. 
+ |--------+-------+-------------+-------|
+ | Model  |   MSR | NLPCC WEIBO |  CTB8 |
+ |--------+-------+-------------+-------|
+ | jieba  | 88.42 |       96.52 | 98.14 |
+ | THULAC | 95.71 |       92.87 | 94.56 |
+ | pkuseg | 96.88 |       94.21 | 95.69 |
+ | njuseg | 96.52 |       95.82 | 96.29 |
+ |--------+-------+-------------+-------|
 
-** Out of domain:
-|-----------------------+-------+-------+-------+-------------+-------------+-------------|
-| CTB8 Training         |  MSRA |  CTB8 |   PKU | NLPCC WEIBO | All Average | OOD Average |
-|-----------------------+-------+-------+-------+-------------+-------------+-------------|
-| jieba                 | 82.75 | 87.14 | 87.12 |       85.68 |       85.67 |       85.18 |
-| THULAC                | 83.50 | 94.56 | 89.13 |       91.00 |       89.55 |       87.88 |
-| pkuseg                | 83.67 | 95.69 | 89.67 |       91.19 |       90.06 |       88.18 |
-| njuseg                | 86.31 | 96.11 | 89.01 |       94.37 |       91.45 |       89.90 |
-| njuseg(with pretrain) | 86.14 | 96.29 | 89.25 |       94.63 |       91.57 |       90.07 |
-|-----------------------+-------+-------+-------+-------------+-------------+-------------|
+*** Out of domain:
+ |-----------------------+-------+-------+-------+-------------+-------------+-------------|
+ | CTB8 Training         |  MSRA |  CTB8 |   PKU | NLPCC WEIBO | All Average | OOD Average |
+ |-----------------------+-------+-------+-------+-------------+-------------+-------------|
+ | jieba                 | 82.75 | 87.14 | 87.12 |       85.68 |       85.67 |       85.18 |
+ | THULAC                | 83.50 | 94.56 | 89.13 |       91.00 |       89.55 |       87.88 |
+ | pkuseg                | 83.67 | 95.69 | 89.67 |       91.19 |       90.06 |       88.18 |
+ | njuseg                | 86.31 | 96.11 | 89.01 |       94.37 |       91.45 |       89.90 |
+ | njuseg(with pretrain) | 86.14 | 96.29 | 89.25 |       94.63 |       91.57 |       90.07 |
+ |-----------------------+-------+-------+-------+-------------+-------------+-------------|
 
-* Speed
-- On CPU: 20 k characters per second
-- On single NVIDIA GTX 1080 GPU: 160 k characters per second
+** Speed
+ - On CPU: 20 k characters per second
+ - On single NVIDIA GTX 1080 GPU: 160 k characters per second

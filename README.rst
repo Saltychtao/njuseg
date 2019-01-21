@@ -1,18 +1,21 @@
 
 .. contents::
 
-1 Installation and Usage
-------------------------
+1 NJUSEG -- Chinese Word Segmenter developed by Nanjing University NLP Group
+----------------------------------------------------------------------------
 
-1.1 Requirements
-~~~~~~~~~~~~~~~~
+1.1 Installation and Usage
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+1.1.1 Requirements
+^^^^^^^^^^^^^^^^^^
 
 - pytorch >= 0.4.1
 
 - torchtext >= 0.3.0
 
-1.2 Installation
-~~~~~~~~~~~~~~~~
+1.1.2 Installation
+^^^^^^^^^^^^^^^^^^
 
 Installation through pip:
 
@@ -20,8 +23,8 @@ Installation through pip:
 
     pip install njuseg
 
-1.3 Usage
-~~~~~~~~~
+1.1.3 Usage
+^^^^^^^^^^^
 
 .. code:: python
 
@@ -30,11 +33,11 @@ Installation through pip:
     sentences = ['美国联邦储备委员会 16 日发布的全国经济形势调查报告显示，去年 12 月初至今年 1 月上旬，美国经济继续温和扩张，但美国企业对经济前景的乐观程度有所下降。','美联储注意到了市场对全球经济放缓等风险因素的担心，但当前美国经济发生衰退的风险并未上升。']
     segmented_sentences = segmenter.seg(sentences)
 
-2 Performance
--------------
+1.2 Performance
+~~~~~~~~~~~~~~~
 
-2.1 In domain:
-~~~~~~~~~~~~~~
+1.2.1 In domain:
+^^^^^^^^^^^^^^^^
 
 All the models are trained on the same corpus, and tested on the same test dataset. The performance of jieba, THULAC and pkuseg is retrieved from `https://github.com/lancopku/pkuseg-python <https://github.com/lancopku/pkuseg-python>`_. 
 
@@ -52,8 +55,8 @@ All the models are trained on the same corpus, and tested on the same test datas
     | njuseg | 96.52 |       95.82 | 96.29 |
     +--------+-------+-------------+-------+
 
-2.2 Out of domain:
-~~~~~~~~~~~~~~~~~~
+1.2.2 Out of domain:
+^^^^^^^^^^^^^^^^^^^^
 
 .. table::
 
@@ -71,8 +74,8 @@ All the models are trained on the same corpus, and tested on the same test datas
     | njuseg(with pretrain) | 86.14 | 96.29 | 89.25 |       94.63 |       91.57 |       90.07 |
     +-----------------------+-------+-------+-------+-------------+-------------+-------------+
 
-3 Speed
--------
+1.3 Speed
+~~~~~~~~~
 
 - On CPU: 20 k characters per second
 
