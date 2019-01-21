@@ -4,7 +4,14 @@
 1 Installation and Usage
 ------------------------
 
-1.1 Installation
+1.1 Requirements
+~~~~~~~~~~~~~~~~
+
+- pytorch >= 0.4.1
+
+- torchtext >= 0.3.0
+
+1.2 Installation
 ~~~~~~~~~~~~~~~~
 
 Installation through pip:
@@ -13,7 +20,7 @@ Installation through pip:
 
     pip install njuseg
 
-1.2 Usage
+1.3 Usage
 ~~~~~~~~~
 
 .. code:: python
@@ -29,18 +36,44 @@ Installation through pip:
 2.1 In domain:
 ~~~~~~~~~~~~~~
 
-with pretrained unigram + bigram embedding
+All the models are trained on the same corpus, and tested on the same test dataset. The performance of jieba, THULAC and pkuseg is retrieved from `https://github.com/lancopku/pkuseg-python <https://github.com/lancopku/pkuseg-python>`_. 
 
 .. table::
 
-    +-------+-------+-------+-------+-------+
-    |   PKU |   MSR |  CTB5 |  CTB6 | NLPCC |
-    +=======+=======+=======+=======+=======+
-    | 96.63 | 96.52 | 98.14 | 96.13 | 95.82 |
-    +-------+-------+-------+-------+-------+
+    +--------+-------+-------------+-------+
+    | Model  |   MSR | NLPCC WEIBO |  CTB8 |
+    +========+=======+=============+=======+
+    | jieba  | 88.42 |       96.52 | 98.14 |
+    +--------+-------+-------------+-------+
+    | THULAC | 95.71 |       92.87 | 94.56 |
+    +--------+-------+-------------+-------+
+    | pkuseg | 96.88 |       94.21 | 95.69 |
+    +--------+-------+-------------+-------+
+    | njuseg | 96.52 |       95.82 | 96.29 |
+    +--------+-------+-------------+-------+
+
+2.2 Out of domain:
+~~~~~~~~~~~~~~~~~~
+
+.. table::
+
+    +-----------------------+-------+-------+-------+-------------+-------------+-------------+
+    | CTB8 Training         |  MSRA |  CTB8 |   PKU | NLPCC WEIBO | All Average | OOD Average |
+    +=======================+=======+=======+=======+=============+=============+=============+
+    | jieba                 | 82.75 | 87.14 | 87.12 |       85.68 |       85.67 |       85.18 |
+    +-----------------------+-------+-------+-------+-------------+-------------+-------------+
+    | THULAC                | 83.50 | 94.56 | 89.13 |       91.00 |       89.55 |       87.88 |
+    +-----------------------+-------+-------+-------+-------------+-------------+-------------+
+    | pkuseg                | 83.67 | 95.69 | 89.67 |       91.19 |       90.06 |       88.18 |
+    +-----------------------+-------+-------+-------+-------------+-------------+-------------+
+    | njuseg                | 86.31 | 96.11 | 89.01 |       94.37 |       91.45 |       89.90 |
+    +-----------------------+-------+-------+-------+-------------+-------------+-------------+
+    | njuseg(with pretrain) | 86.14 | 96.29 | 89.25 |       94.63 |       91.57 |       90.07 |
+    +-----------------------+-------+-------+-------+-------------+-------------+-------------+
 
 3 Speed
 -------
 
-On CPU: 20 k characters per second
-On single NVIDIA GTX 1080 GPU: 160 k characters per second
+- On CPU: 20 k characters per second
+
+- On single NVIDIA GTX 1080 GPU: 160 k characters per second
