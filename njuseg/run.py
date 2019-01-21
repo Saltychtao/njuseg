@@ -22,7 +22,7 @@ if __name__ == '__main__':
     if options.train:
         Segmenter.train(options)
     elif options.test:
-        fscore = Segmenter.test(options.model_pth)
+        fscore = Segmenter.test(options.model_pth,options.test_path)
         print('Test fscore :{}'.format(fscore))
     elif options.seg:
         Segmenter.seg_corpus(options.model_pth,options.raw_corpus,options.output)
