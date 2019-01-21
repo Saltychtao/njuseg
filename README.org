@@ -1,4 +1,4 @@
-* NJUSEG -- Chinese Word Segmenter developed by Nanjing University NLP Group
+* njuseg
 ** Installation and Usage
 *** Requirements
  - pytorch >= 0.4.1
@@ -21,14 +21,14 @@
 ** Performance
 *** In domain:
  All the models are trained on the same corpus, and tested on the same test dataset. The performance of jieba, THULAC and pkuseg is retrieved from [[https://github.com/lancopku/pkuseg-python]]. 
- |--------+-------+-------------+-------|
- | Model  |   MSR | NLPCC WEIBO |  CTB8 |
- |--------+-------+-------------+-------|
- | jieba  | 88.42 |       96.52 | 98.14 |
- | THULAC | 95.71 |       92.87 | 94.56 |
- | pkuseg | 96.88 |       94.21 | 95.69 |
- | njuseg | 96.52 |       95.82 | 96.29 |
- |--------+-------+-------------+-------|
+ |--------+---------+-------------+---------|
+ | Model  |     MSR | NLPCC WEIBO |    CTB8 |
+ |--------+---------+-------------+---------|
+ | jieba  |   88.42 |       87.66 |   87.14 |
+ | THULAC |   95.71 |       92.87 |   94.56 |
+ | pkuseg | *96.88* |       94.21 |   95.69 |
+ | njuseg |   96.52 |     *95.82* | *96.29* |
+ |--------+---------+-------------+---------|
 
 *** Out of domain:
  |-----------------------+-------+-------+-------+-------------+-------------+-------------|
@@ -38,7 +38,7 @@
  | THULAC                | 83.50 | 94.56 | 89.13 |       91.00 |       89.55 |       87.88 |
  | pkuseg                | 83.67 | 95.69 | 89.67 |       91.19 |       90.06 |       88.18 |
  | njuseg                | 86.31 | 96.11 | 89.01 |       94.37 |       91.45 |       89.90 |
- | njuseg(with pretrain) | 86.14 | 96.29 | 89.25 |       94.63 |       91.57 |       90.07 |
+ | njuseg(with pretrain) | 86.14 | 96.29 | 89.25 |       94.63 |     *91.57* |     *90.07* |
  |-----------------------+-------+-------+-------+-------------+-------------+-------------|
 
 ** Speed
